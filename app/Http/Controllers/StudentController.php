@@ -11,7 +11,7 @@ class StudentController extends Controller
 	{
 		// Como fazer uma query condicional
 		// return view('welcome', ['listStudents' => ModelsStudent::where('name', 'Nome a procurar')->get()]);
-		return view('welcome', ['listStudents' => ModelsStudent::all()]);
+		return view('student', ['listStudents' => ModelsStudent::all()]);
 	}
 	public function save(Request $request)
 	{
@@ -20,7 +20,7 @@ class StudentController extends Controller
 
 		$newStudent->save();
 
-		return redirect('/');
+		return redirect('/student');
 	}
 	public function edit($id, Request $request)
 	{
@@ -29,6 +29,6 @@ class StudentController extends Controller
 
 		$student->save();
 
-		return redirect('/');
+		return redirect('/student');
 	}
 }

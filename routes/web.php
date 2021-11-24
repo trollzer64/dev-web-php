@@ -14,7 +14,11 @@ use App\Http\Controllers\StudentController;
 |
 */
 
-Route::get('/', [StudentController::class, 'index']);
+Route::get('/', function () {
+	return view('welcome');
+});
+
+Route::get('/student', [StudentController::class, 'index']);
 
 Route::post('/saveStudent', [StudentController::class, 'save'])->name('saveStudent');
 
