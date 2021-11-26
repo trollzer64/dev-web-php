@@ -14,19 +14,76 @@ O sistema será utilizado por três perfis de usuários e terá módulos diferen
 
 ### Modelos
 
--   Escola: Cadastro de produtos e responsáveis
--   Responsável: Cadastro de aluno e depósito
--   Aluno: Comprar produto e consultar saldo
-    -   Matrícula (string)
-    -   Turma (string)
-    -   Turno (enum)
+-   **Escola**
+    -   Nome (string)
+    -   Endereço (string)
+    -   Telefone (string)
+    -   Email (string)
+-   **Responsável**
+    -   CPF (string)
     -   Nome (string)
     -   Telefone (string)
     -   Email (string)
     -   Login (string)
     -   Senha (string)
+-   **Aluno**
+    -   Responsável (fk)
+    -   Escola (fk)
+    -   Matrícula (string)
+    -   Turma (string)
+    -   Turno (enum: matutino/vespertino/noturno)
+    -   Nome (string)
+    -   Telefone (string)
+    -   Email (string)
+    -   Login (string)
+    -   Senha (string)
+    -   Saldo (decimal)
+-   **Produto**
+    -   Código (string)
+    -   Nome (string)
+    -   Foto (binary)
+    -   Preço (decimal)
+    -   Disponível (bool)
+    -   **Bebida**
+        -   Fornecedor (string)
+    -   **Comida**
+        -   Ingredientes (string)
+- **Transações**
+    - Aluno (fk)
+    - Quantia (decimal)
+    - Data (date)
+- **Consumo**
+    - Transação (fk)
+    - Produto (fk)
+
+
+### Funcionalidades
+
+-   **Escola**
+    -   CRUD produtos
+    -   Disponibilizar produtos
+-   **Responsável**
+    -   CRUD Ele mesmo
+    -   CRUD de aluno
+    -   Depositar dinheiro pro aluno
+    -   Consultar extrato do aluno
+    -   Consultar consumo do aluno
+-   **Aluno**
+    -   Comprar produto
+    -   Consultar o próprio extrato
+-   **Produto**
+    -   **Bebida**
+    -   **Comida**
 
 ## Implementação
+
+### Banco
+
+#### Subir banco
+
+```bash
+sudo service postgresql start
+```
 
 ### Modelagem
 
