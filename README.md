@@ -37,7 +37,7 @@ O sistema será utilizado por três perfis de usuários e terá módulos diferen
     -   Email (string)
     -   Login (string)
     -   Senha (string)
-    -   Saldo (decimal)
+    -   Saldo (big integer) <!-- Centavos -->
 -   **Produto**
     -   Código (string)
     -   Nome (string)
