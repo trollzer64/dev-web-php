@@ -15,7 +15,11 @@ module.exports = {
 		},
 	},
 	variants: {
-		extend: {},
+		extend: {
+			backgroundColor: ["active"],
+			cursor: ["disabled"],
+			opacity: ["disabled"],
+		},
 	},
 	plugins: [],
 };

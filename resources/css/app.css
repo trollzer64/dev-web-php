@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+	.form-main {
+		@apply flex flex-col items-center;
+		@apply m-4 p-2;
+		@apply bg-gray-300;
+	}
+
+	.btn-blue {
+		@apply m-2 py-2 px-4;
+		@apply rounded-full;
+		@apply text-white font-bold;
+		@apply bg-blue-500;
+		@apply disabled:opacity-50 disabled:cursor-not-allowed;
+	}
+	.btn-red {
+		@apply m-2 py-2 px-4;
+		@apply rounded-full;
+		@apply text-white font-bold;
+		@apply bg-red-500;
+		@apply disabled:opacity-50 disabled:cursor-not-allowed;
+	}
+	.form-item {
+		@apply flex flex-row;
+		@apply m-2;
+	}
+	.form-item > * {
+		@apply mx-2;
+	}
+	.item-container {
+		@apply flex flex-col;
+	}
+	.list-container {
+		@apply grid;
+		grid-template-columns: fit-content(25%) 1fr;
+		@apply divide-y;
+	}
+}

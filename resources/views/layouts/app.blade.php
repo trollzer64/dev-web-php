@@ -13,9 +13,8 @@
 </head>
 
 <body class="flex flex-col h-screen">
-	<header class="fixed w-screen">
+	<header class="@yield('header-class', 'fixed w-screen')">
 		@section('top')
-
 		@show
 	</header>
 

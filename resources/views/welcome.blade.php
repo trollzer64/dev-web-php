@@ -8,7 +8,9 @@
 	<nav class="flex items-center justify-between flex-wrap bg-green-500 p-6">
 		<div class="flex items-center flex-shrink-0 text-white mr-6">
 			<img class="m-2" src="{{ asset('assets/logo.png') }}" alt="logo">
-			<span class="font-semibold text-xl tracking-tight">CantiSystem</span>
+			<span class="font-semibold text-xl tracking-tight">
+				<a href="/">CantiSystem</a>
+			</span>
 		</div>
 		<div class="block lg:hidden">
 			<button

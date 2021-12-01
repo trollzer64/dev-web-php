@@ -19,6 +19,8 @@ O sistema será utilizado por três perfis de usuários e terá módulos diferen
     -   Endereço (string)
     -   Telefone (string)
     -   Email (string)
+    -   Login (string)
+    -   Senha (string)
 -   **Responsável**
     -   CPF (string)
     -   Nome (string)
@@ -48,14 +50,13 @@ O sistema será utilizado por três perfis de usuários e terá módulos diferen
         -   Fornecedor (string)
     -   **Comida**
         -   Ingredientes (string)
-- **Transações**
-    - Aluno (fk)
-    - Quantia (decimal)
-    - Data (date)
-- **Consumo**
-    - Transação (fk)
-    - Produto (fk)
-
+-   **Transações**
+    -   Aluno (fk)
+    -   Quantia (decimal)
+    -   Data (date)
+-   **Consumo**
+    -   Transação (fk)
+    -   Produto (fk)
 
 ### Funcionalidades
 
