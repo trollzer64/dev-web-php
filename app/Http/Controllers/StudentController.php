@@ -116,6 +116,7 @@ class StudentController extends Controller
 		$responsible_user = Auth::user();
 		$type = UserController::userType($responsible_user->id);
 		switch ($type) {
+			case 'school':
 			case 'responsible':
 				$responsible = Responsible::find($responsible_user->id);
 				// garantir que somente possa editar o aluno do responsável atual

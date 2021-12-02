@@ -66,7 +66,8 @@
 		</section>
 
 		<section id="form" class="flex flex-col items-center">
-			@includeWhen(!Request::get('edit'),'layouts.forms.student', [
+			@includeWhen(!Request::get('edit') and session()->get('type') !== 'school',
+			'layouts.forms.student', [
 			'edit'=> false,
 			'balance'=>"0,00",
 			])

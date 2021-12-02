@@ -23,21 +23,21 @@ Route::get('/', function () {
 
 Route::view('/login', 'login');
 Route::post('/login', [UserController::class, 'authenticate'])->name('login');
-Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+Route::get('/logout', [UserController::class, 'logout'])->middleware('auth')->name('logout');
 
 Route::get('/home', [UserController::class, 'home'])->middleware('auth')->name('home');
 
 Route::get('/admin', [AdminController::class, 'index'])->middleware('auth')->name('admin');
-Route::post('/admin/save', [AdminController::class, 'save'])->name('saveAdmin');
-Route::post('/admin/edit/{id}', [AdminController::class, 'edit'])->name('editAdmin');
-Route::post('/admin/delete/{id}', [AdminController::class, 'delete'])->name('deleteAdmin');
+Route::post('/admin/save', [AdminController::class, 'save'])->middleware('auth')->name('saveAdmin');
+Route::post('/admin/edit/{id}', [AdminController::class, 'edit'])->middleware('auth')->name('editAdmin');
+Route::post('/admin/delete/{id}', [AdminController::class, 'delete'])->middleware('auth')->name('deleteAdmin');
 
 Route::get('/student', [StudentController::class, 'index'])->middleware('auth')->name('student');
-Route::post('/student/save', [StudentController::class, 'save'])->name('saveStudent');
-Route::post('/student/edit/{id}', [StudentController::class, 'edit'])->name('editStudent');
-Route::post('/student/delete/{id}', [StudentController::class, 'delete'])->name('deleteStudent');
+Route::post('/student/save', [StudentController::class, 'save'])->middleware('auth')->name('saveStudent');
+Route::post('/student/edit/{id}', [StudentController::class, 'edit'])->middleware('auth')->name('editStudent');
+Route::post('/student/delete/{id}', [StudentController::class, 'delete'])->middleware('auth')->name('deleteStudent');
 
 Route::get('/responsible/', [ResponsibleController::class, 'index'])->middleware('auth')->name('responsible');
-Route::post('/responsible/save', [ResponsibleController::class, 'save'])->name('saveResponsible');
-Route::post('/responsible/edit/{id}', [ResponsibleController::class, 'edit'])->name('editResponsible');
-Route::post('/responsible/delete/{id}', [ResponsibleController::class, 'delete'])->name('deleteResponsible');
+Route::post('/responsible/save', [ResponsibleController::class, 'save'])->middleware('auth')->name('saveResponsible');
+Route::post('/responsible/edit/{id}', [ResponsibleController::class, 'edit'])->middleware('auth')->name('editResponsible');
+Route::post('/responsible/delete/{id}', [ResponsibleController::class, 'delete'])->middleware('auth')->name('deleteResponsible');

@@ -16,11 +16,11 @@
 				Alunos
 			</a>
 		@endif
-		@if (in_array(session()->get('type'), ['admin', 'school'], true))
+		{{-- @if (in_array(session()->get('type'), ['admin', 'school'], true))
 			<a href="/school" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
 				{{ session()->get('type') === 'school' ? 'Escola' : 'Escolas' }}
 			</a>
-		@endif
+		@endif --}}
 	</div>
 	<div>
 		<a href="/logout"
