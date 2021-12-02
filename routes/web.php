@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ResponsibleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
@@ -35,3 +36,8 @@ Route::get('/student', [StudentController::class, 'index'])->middleware('auth')-
 Route::post('/student/save', [StudentController::class, 'save'])->name('saveStudent');
 Route::post('/student/edit/{id}', [StudentController::class, 'edit'])->name('editStudent');
 Route::post('/student/delete/{id}', [StudentController::class, 'delete'])->name('deleteStudent');
+
+Route::get('/responsible/', [ResponsibleController::class, 'index'])->middleware('auth')->name('responsible');
+Route::post('/responsible/save', [ResponsibleController::class, 'save'])->name('saveResponsible');
+Route::post('/responsible/edit/{id}', [ResponsibleController::class, 'edit'])->name('editResponsible');
+Route::post('/responsible/delete/{id}', [ResponsibleController::class, 'delete'])->name('deleteResponsible');

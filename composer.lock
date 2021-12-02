@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ab8100f9fffd2e9b78b3591f915294c1",
+    "content-hash": "77657c4a634860362acd28bff84aa361",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6069,6 +6069,92 @@
                 }
             ],
             "time": "2020-11-12T00:07:28+00:00"
+        },
+        {
+            "name": "vsilva472/laravel-cpf",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vsilva472/laravel-cpf.git",
+                "reference": "5b4ed29107374480929842d97e2f4a3639422594"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vsilva472/laravel-cpf/zipball/5b4ed29107374480929842d97e2f4a3639422594",
+                "reference": "5b4ed29107374480929842d97e2f4a3639422594",
+                "shasum": ""
+            },
+            "require": {
+                "vsilva472/phpcpf": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Vsilva472\\LaravelCPF\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vinicius Silva",
+                    "email": "vsilva472@gmail.com"
+                }
+            ],
+            "description": "Pacote com valida\u0000\u0000o de CPF para Laravel",
+            "support": {
+                "issues": "https://github.com/vsilva472/laravel-cpf/issues",
+                "source": "https://github.com/vsilva472/laravel-cpf/tree/lang_support"
+            },
+            "time": "2018-01-25T21:01:44+00:00"
+        },
+        {
+            "name": "vsilva472/phpcpf",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vsilva472/phpcpf.git",
+                "reference": "fc404d66448e1413b6400c4b2e388afa505a84af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vsilva472/phpcpf/zipball/fc404d66448e1413b6400c4b2e388afa505a84af",
+                "reference": "fc404d66448e1413b6400c4b2e388afa505a84af",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Vsilva472\\phpCPF\\": [
+                        "src/",
+                        "tests/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vinicius Silva",
+                    "email": "vsilva472@gmail.com"
+                }
+            ],
+            "description": "Classe em PHP para validar CPF",
+            "support": {
+                "issues": "https://github.com/vsilva472/phpcpf/issues",
+                "source": "https://github.com/vsilva472/phpcpf/tree/1.0.3"
+            },
+            "time": "2020-02-28T21:22:37+00:00"
         },
         {
             "name": "webmozart/assert",

@@ -19,7 +19,7 @@ class ResponsibleSeeder extends Seeder
 		DB::table('responsibles')->insert([
 			'user_id' => DB::table('users')->pluck('id')->last(),
 
-			'cpf' => Str::random(11),
+			'cpf' => strval(rand(10000000000, 99999999999)),
 
 			'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 			'updated_at' => Carbon::now()->format('Y-m-d H:i:s')

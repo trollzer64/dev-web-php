@@ -8,9 +8,17 @@
 				Admnistradores
 			</a>
 		@endif
-		@if (session()->get('type') === 'responsible')
+		@if (in_array(session()->get('type'), ['responsible', 'school', 'admin'], true))
+			<a href="/responsible" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
+				{{ session()->get('type') === 'responsible' ? 'Responsável' : 'Responsáveis' }}
+			</a>
 			<a href="/student" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
 				Alunos
+			</a>
+		@endif
+		@if (in_array(session()->get('type'), ['admin', 'school'], true))
+			<a href="/school" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
+				{{ session()->get('type') === 'school' ? 'Escola' : 'Escolas' }}
 			</a>
 		@endif
 	</div>
