@@ -16,36 +16,94 @@ class StudentController extends Controller
 {
 	public function index(Request $request)
 	{
-		if ($request->has('edit')) {
-			$filterId = $request->query('edit');
-			$students = DB::table('users')
-				->where('users.id', '=', intval($filterId))
-				->join('students', 'users.id', '=', 'students.user_id')
-				->select(
-					'users.*',
-					'students.id as student_id',
-					'students.school_id',
-					'students.responsible_id',
-					'students.registration',
-					'students.class',
-					'students.shift',
-					'students.balance'
-				)
-				->get();
+		$user = Auth::user();
+		if ($user) {
+			$type = UserController::userType($user->id);
+			switch ($type) {
+				case 'responsible':
+					$responsible = DB::table('responsibles')
+						->where('responsibles.user_id', '=', intval($user->id))
+						->first();
+					$responsibleId = $responsible->id;
+					break;
+				case 'student':
+					$responsibleId = null;
+					$filterId = $user->id;
+					break;
+
+				default:
+					$filterId = null;
+					$responsibleId = null;
+					break;
+			}
+		}
+
+		if ($request->has('edit') or $filterId) {
+			if ($responsibleId) {
+				$filterId = $request->query('edit');
+				$students = DB::table('users')
+					->where('users.id', '=', intval($filterId))
+					->join('students', 'users.id', '=', 'students.user_id')
+					->where('students.responsible_id', '=', intval($responsibleId))
+					->select(
+						'users.*',
+						'students.id as student_id',
+						'students.school_id',
+						'students.responsible_id',
+						'students.registration',
+						'students.class',
+						'students.shift',
+						'students.balance'
+					)
+					->get();
+			} else {
+				$filterId = $filterId ?: $request->query('edit');
+				$students = DB::table('users')
+					->where('users.id', '=', intval($filterId))
+					->join('students', 'users.id', '=', 'students.user_id')
+					->select(
+						'users.*',
+						'students.id as student_id',
+						'students.school_id',
+						'students.responsible_id',
+						'students.registration',
+						'students.class',
+						'students.shift',
+						'students.balance'
+					)
+					->get();
+			}
 		} else {
-			$students = DB::table('users')
-				->join('students', 'users.id', '=', 'students.user_id')
-				->select(
-					'users.*',
-					'students.id as student_id',
-					'students.school_id',
-					'students.responsible_id',
-					'students.registration',
-					'students.class',
-					'students.shift',
-					'students.balance'
-				)
-				->get();
+			if ($responsibleId) {
+				$students = DB::table('users')
+					->join('students', 'users.id', '=', 'students.user_id')
+					->where('students.responsible_id', '=', intval($responsibleId))
+					->select(
+						'users.*',
+						'students.id as student_id',
+						'students.school_id',
+						'students.responsible_id',
+						'students.registration',
+						'students.class',
+						'students.shift',
+						'students.balance'
+					)
+					->get();
+			} else {
+				$students = DB::table('users')
+					->join('students', 'users.id', '=', 'students.user_id')
+					->select(
+						'users.*',
+						'students.id as student_id',
+						'students.school_id',
+						'students.responsible_id',
+						'students.registration',
+						'students.class',
+						'students.shift',
+						'students.balance'
+					)
+					->get();
+			}
 		}
 
 		$schools = DB::table('users')
@@ -56,6 +114,13 @@ class StudentController extends Controller
 				'schools.address',
 			)
 			->get();
+		if ($students->count() === 0) {
+			return view('student', [
+				'listStudents' => $students,
+				'listSchools' => $schools,
+				'student' => null,
+			]);
+		}
 		return view('student', [
 			'listStudents' => $students,
 			'listSchools' => $schools

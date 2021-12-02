@@ -66,25 +66,28 @@
 		</section>
 
 		<section id="form" class="flex flex-col items-center">
-			@includeWhen(!Request::get('edit') and session()->get('type') !== 'school',
+			@includeWhen(!Request::get('edit') and session()->get('type') !== 'school' and session()->get('type') !== 'student',
 			'layouts.forms.student', [
 			'edit'=> false,
 			'balance'=>"0,00",
 			])
-			@includeWhen(Request::get('edit') == $student->id, 'layouts.forms.student',
-			[
-			'edit'=> $student->student_id,
-			'school_id'=> $student->school_id,
-			'name'=> $student->name,
-			'registration'=> $student->registration,
-			'class'=> $student->class,
-			'shift'=> $student->shift,
-			'balance'=> $student->balance,
-			'phone'=> $student->phone,
-			'email'=> $student->email,
-			'login'=> $student->login,
-			'password'=> $student->password,
-			])
+			@if (Request::get('edit') == ($student ? $student->id : -1))
+				@includeWhen(Request::get('edit') == ($student ? $student->id : -1),
+				'layouts.forms.student',
+				[
+				'edit'=> $student->student_id,
+				'school_id'=> $student->school_id,
+				'name'=> $student->name,
+				'registration'=> $student->registration,
+				'class'=> $student->class,
+				'shift'=> $student->shift,
+				'balance'=> $student->balance,
+				'phone'=> $student->phone,
+				'email'=> $student->email,
+				'login'=> $student->login,
+				'password'=> $student->password,
+				])
+			@endif
 		</section>
 	</div>
 @endsection

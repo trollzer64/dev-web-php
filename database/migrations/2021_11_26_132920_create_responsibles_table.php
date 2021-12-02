@@ -17,7 +17,7 @@ class CreateResponsiblesTable extends Migration
 			$table->id();
 			$table->foreignId('user_id')->constrained('users')->onDelete('cascade');
 
-			$table->string('cpf', 11)->unique();
+			$table->string('cpf')->unique();
 
 			$table->timestampsTz();
 			// $table->softDeletes();
