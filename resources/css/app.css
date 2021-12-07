@@ -40,4 +40,11 @@
 		grid-template-columns: fit-content(25%) 1fr;
 		@apply divide-y;
 	}
+	a.disabled {
+		pointer-events: none;
+		@apply opacity-50 cursor-not-allowed;
+	}
+	.fit-picture {
+		width: 250px;
+	}
 }

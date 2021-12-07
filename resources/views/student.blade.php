@@ -13,15 +13,6 @@
 				<a href="/">CantiSystem</a>
 			</span>
 		</div>
-		<div class="block lg:hidden">
-			<button
-				class="flex items-center px-3 py-2 border rounded text-green-200 border-green-400 hover:text-white hover:border-white">
-				<svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-					<title>Menu</title>
-					<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-				</svg>
-			</button>
-		</div>
 		@include('layouts.header')
 	</nav>
 @endsection
@@ -40,7 +31,8 @@
 								Deletar
 							</button>
 						</form>
-						<a href="{{ Request::url() . '?edit=' . $student->id . '#form' }} " class="btn-blue">
+						<a href="{{ Request::url() . '?edit=' . $student->id . '#form' }}"
+							class="btn-blue {{ Auth::user()->id === $student->id ? 'disabled' : '' }}">
 							Editar
 						</a>
 						<form class="deposit" action="{{ route('depositStudent', $student->student_id) }}" method="POST">

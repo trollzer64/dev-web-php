@@ -22,6 +22,9 @@ class CreateProductsTable extends Migration
 			$table->decimal('price');
 			$table->enum('type', ['food', 'drink']);
 
+			$table->string('ingredients')->nullable();
+			$table->string('provider')->nullable();
+
 			$table->timestampsTz();
 		});
 	}

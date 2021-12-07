@@ -686,6 +686,16 @@ video {
   border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
 }
 
+a.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.fit-picture {
+  width: 250px;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

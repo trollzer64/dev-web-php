@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ResponsibleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
@@ -42,3 +43,8 @@ Route::get('/responsible/', [ResponsibleController::class, 'index'])->middleware
 Route::post('/responsible/save', [ResponsibleController::class, 'save'])->middleware('auth')->name('saveResponsible');
 Route::post('/responsible/edit/{id}', [ResponsibleController::class, 'edit'])->middleware('auth')->name('editResponsible');
 Route::post('/responsible/delete/{id}', [ResponsibleController::class, 'delete'])->middleware('auth')->name('deleteResponsible');
+
+Route::get('/product', [ProductController::class, 'index'])->middleware('auth')->name('product');
+Route::post('/product/save', [ResponsibleController::class, 'save'])->middleware('auth')->name('saveProduct');
+Route::post('/product/edit/{id}', [ResponsibleController::class, 'edit'])->middleware('auth')->name('editProduct');
+Route::post('/product/delete/{id}', [ResponsibleController::class, 'delete'])->middleware('auth')->name('deleteProduct');
