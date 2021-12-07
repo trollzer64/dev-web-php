@@ -620,6 +620,7 @@ video {
 }
 
 .btn-blue {
+  text-align: center;
   margin: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -639,6 +640,7 @@ video {
 }
 
 .btn-red {
+  text-align: center;
   margin: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;

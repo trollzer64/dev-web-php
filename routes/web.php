@@ -36,6 +36,7 @@ Route::get('/student', [StudentController::class, 'index'])->middleware('auth')-
 Route::post('/student/save', [StudentController::class, 'save'])->middleware('auth')->name('saveStudent');
 Route::post('/student/edit/{id}', [StudentController::class, 'edit'])->middleware('auth')->name('editStudent');
 Route::post('/student/delete/{id}', [StudentController::class, 'delete'])->middleware('auth')->name('deleteStudent');
+Route::post('/student/deposit/{id}', [StudentController::class, 'deposit'])->middleware('auth')->name('depositStudent');
 
 Route::get('/responsible/', [ResponsibleController::class, 'index'])->middleware('auth')->name('responsible');
 Route::post('/responsible/save', [ResponsibleController::class, 'save'])->middleware('auth')->name('saveResponsible');

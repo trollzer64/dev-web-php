@@ -33,7 +33,7 @@
 			<h2 class="text-base md:text-2xl">Alunos cadastrados</h2>
 			<div class="list-container">
 				@foreach ($listStudents as $student)
-					<div class="flex flex-col">
+					<div class="flex flex-col items-center">
 						<form action="{{ route('deleteStudent', $student->student_id) }}" method="post">
 							@csrf
 							<button class="btn-red" type="submit" {!! Auth::user()->id === $student->id ? 'disabled' : '' !!}>
@@ -43,13 +43,20 @@
 						<a href="{{ Request::url() . '?edit=' . $student->id . '#form' }} " class="btn-blue">
 							Editar
 						</a>
+						<form class="deposit" action="{{ route('depositStudent', $student->student_id) }}" method="POST">
+							@csrf
+							<input name="deposit" type="number" hidden value="0.00">
+							<button class="btn-red" type="submit" {!! Auth::user()->id === $student->id ? 'disabled' : '' !!}>
+								Depositar
+							</button>
+						</form>
 					</div>
 					<div class="item-container">
 						<span>Nome: {{ $student->name }}</span>
 						<span>Matrícula: {{ $student->registration }}</span>
 						<span>Turma: {{ $student->class }}</span>
 						<span>Turno: {{ $student->shift }}</span>
-						<span>Saldo: R$ {{ number_format($student->balance / 100, 2, ',', ' ') }}</span>
+						<span>Saldo: R$ {{ number_format($student->balance, 2, ',', ' ') }}</span>
 						<span>Telefone: {{ $student->phone }}</span>
 						<span>Email: {{ $student->email }}</span>
 						<span>Login: {{ $student->login }}</span>
@@ -91,3 +98,19 @@
 		</section>
 	</div>
 @endsection
+
+<script>
+ window.onload = function() {
+  const forms = document.querySelectorAll("form.deposit");
+  forms.forEach((form) => {
+   const input = form.children.item(1);
+   form.onsubmit = function(event) {
+    /* do what you want with the form */
+    const prompted = prompt("Entre o valor que deseja depositar", "0.00");
+    input.value = prompted;
+    return true;
+   };
+  });
+
+ };
+</script>

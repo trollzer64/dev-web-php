@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
 			UserSeeder::class, SchoolSeeder::class,
 			UserSeeder::class, ResponsibleSeeder::class,
 			UserSeeder::class, StudentSeeder::class,
+			ProductSeeder::class, FoodSeeder::class,
+			ProductSeeder::class, DrinkSeeder::class,
 		]);
 	}
 }

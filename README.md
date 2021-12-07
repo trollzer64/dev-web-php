@@ -39,24 +39,16 @@ O sistema será utilizado por três perfis de usuários e terá módulos diferen
     -   Email (string)
     -   Login (string)
     -   Senha (string)
-    -   Saldo (big integer) <!-- Centavos -->
+    -   Saldo (decimal)
 -   **Produto**
     -   Código (string)
     -   Nome (string)
-    -   Foto (binary)
+    -   Foto (path)
     -   Preço (decimal)
-    -   Disponível (bool)
     -   **Bebida**
         -   Fornecedor (string)
     -   **Comida**
         -   Ingredientes (string)
--   **Transações**
-    -   Aluno (fk)
-    -   Quantia (decimal)
-    -   Data (date)
--   **Consumo**
-    -   Transação (fk)
-    -   Produto (fk)
 
 ### Funcionalidades
 
@@ -67,12 +59,10 @@ O sistema será utilizado por três perfis de usuários e terá módulos diferen
     -   CRUD Ele mesmo
     -   CRUD de aluno
     -   Depositar dinheiro pro aluno
-    -   Consultar extrato do aluno
-    -   Consultar consumo do aluno
 -   **Aluno**
     -   Comprar produto
-    -   Consultar o próprio extrato
 -   **Produto**
+    - CRUD
     -   **Bebida**
     -   **Comida**
 

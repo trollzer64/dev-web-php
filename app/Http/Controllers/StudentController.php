@@ -25,6 +25,7 @@ class StudentController extends Controller
 						->where('responsibles.user_id', '=', intval($user->id))
 						->first();
 					$responsibleId = $responsible->id;
+					$filterId = null;
 					break;
 				case 'student':
 					$responsibleId = null;
@@ -183,7 +184,7 @@ class StudentController extends Controller
 		switch ($type) {
 			case 'school':
 			case 'responsible':
-				$responsible = Responsible::find($responsible_user->id);
+				// $responsible = Responsible::find($responsible_user->id);
 				// garantir que somente possa editar o aluno do responsável atual
 				$student = Student::find($id);
 				if ($student) {
@@ -236,6 +237,42 @@ class StudentController extends Controller
 					try {
 						DB::beginTransaction();
 						UserController::delete($student->user_id, $request);
+						DB::commit();
+					} catch (Exception $e) {
+						DB::rollBack();
+						throw $e;
+					}
+					return redirect('/student');
+				}
+				return back()->withErrors([
+					'found' => 'Não encontrado',
+				]);
+
+			default:
+				return back()->withErrors([
+					'access' => 'Não autorizado',
+				]);
+		}
+	}
+	public function deposit($id, Request $request){
+		$responsible_user = Auth::user();
+		$type = UserController::userType($responsible_user->id);
+		switch ($type) {
+			case 'school':
+			case 'responsible':
+				// $responsible = Responsible::find($responsible_user->id);
+				// garantir que somente possa editar o aluno do responsável atual
+				$student = Student::find($id);
+				if ($student) {
+					try {
+						DB::beginTransaction();
+
+						$validatedData = $request->validate([
+							'deposit' => ['required', 'numeric'],
+						]);
+						$student->balance += $validatedData['deposit'];
+
+						$student->save();
 						DB::commit();
 					} catch (Exception $e) {
 						DB::rollBack();
