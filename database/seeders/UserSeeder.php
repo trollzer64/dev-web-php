@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
 		DB::table('users')->insert([
 			'email' => $results['email'],
 			'login' => $results['login']['username'],
-			'password' => Hash::make('senha'),
+			'password' => Hash::make('Cantina_10'),
 
 			'name' => implode(' ', $results['name']),
 			'phone' => $results['phone'],
