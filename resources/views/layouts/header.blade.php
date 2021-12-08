@@ -13,7 +13,7 @@
 				{{ session()->get('type') === 'responsible' ? 'Responsável' : 'Responsáveis' }}
 			</a>
 		@endif
-		@if (in_array(session()->get('type'), ['school', 'admin'], true))
+		@if (in_array(session()->get('type'), ['school', 'admin', 'student'], true))
 			<a href="/product" class="block mt-4 lg:inline-block lg:mt-0 text-green-200 hover:text-white mr-4">
 				Produtos
 			</a>

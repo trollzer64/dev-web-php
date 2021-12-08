@@ -59,12 +59,10 @@ class ResponsibleController extends Controller
 		if ($school_user) {
 			$type = UserController::userType($school_user->id);
 			switch ($type) {
+				case 'admin':
 				case 'school':
 					try {
 						DB::beginTransaction();
-						$school = DB::table('schools')
-							->where('user_id', '=', $school_user->id)
-							->first();
 
 						$newUser = UserController::save($request);
 						$newUser->save();
@@ -99,9 +97,8 @@ class ResponsibleController extends Controller
 		$responsible_user = Auth::user();
 		$type = UserController::userType($responsible_user->id);
 		switch ($type) {
+			case 'admin':
 			case 'responsible':
-				$responsible = Responsible::find($responsible_user->id);
-				// garantir que somente possa editar o aluno do responsável atual
 				$responsible = Responsible::find($id);
 				if ($responsible) {
 					$user = UserController::edit($responsible->user_id, $request);
@@ -140,8 +137,8 @@ class ResponsibleController extends Controller
 		$school_user = Auth::user();
 		$type = UserController::userType($school_user->id);
 		switch ($type) {
-			case 'school':
-				$school = School::find($school_user->id);
+			case 'admin':
+			case 'responsible':
 				$responsible = Responsible::find($id);
 				if ($responsible) {
 					try {

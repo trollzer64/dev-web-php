@@ -11,6 +11,7 @@ module.exports = {
 			backgroundImage: {
 				lunch: "url('/assets/lunchHP.jpg')",
 				"control-food": "url('/assets/controlFood.jpg')",
+				"manager-canteen": "url('/assets/managerCantina.jpeg')",
 			},
 		},
 	},

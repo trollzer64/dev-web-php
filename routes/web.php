@@ -6,6 +6,7 @@ use App\Http\Controllers\ResponsibleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,12 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
-Route::view('/login', 'login');
+Route::get('/login', function () {
+	if (Auth::user()) {
+		return redirect('/home');
+	}
+	return view('login');
+});
 Route::post('/login', [UserController::class, 'authenticate'])->name('login');
 Route::get('/logout', [UserController::class, 'logout'])->middleware('auth')->name('logout');
 
@@ -45,6 +51,7 @@ Route::post('/responsible/edit/{id}', [ResponsibleController::class, 'edit'])->m
 Route::post('/responsible/delete/{id}', [ResponsibleController::class, 'delete'])->middleware('auth')->name('deleteResponsible');
 
 Route::get('/product', [ProductController::class, 'index'])->middleware('auth')->name('product');
-Route::post('/product/save', [ResponsibleController::class, 'save'])->middleware('auth')->name('saveProduct');
-Route::post('/product/edit/{id}', [ResponsibleController::class, 'edit'])->middleware('auth')->name('editProduct');
-Route::post('/product/delete/{id}', [ResponsibleController::class, 'delete'])->middleware('auth')->name('deleteProduct');
+Route::post('/product/save', [ProductController::class, 'save'])->middleware('auth')->name('saveProduct');
+Route::post('/product/edit/{id}', [ProductController::class, 'edit'])->middleware('auth')->name('editProduct');
+Route::post('/product/delete/{id}', [ProductController::class, 'delete'])->middleware('auth')->name('deleteProduct');
+Route::post('/product/buy/{id}', [ProductController::class, 'buy'])->middleware('auth')->name('buyProduct');

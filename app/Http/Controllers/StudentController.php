@@ -144,7 +144,7 @@ class StudentController extends Controller
 						$newUser->save();
 
 						$validatedData = $request->validate([
-							'registration' => ['required', 'string', 'numeric'],
+							'registration' => ['required', 'string'],
 							'class' => ['required', 'string'],
 							'shift' => ['required', 'string', 'in:matutino,vespertino,noturno'],
 							'balance' => ['required', 'numeric'],
@@ -182,10 +182,9 @@ class StudentController extends Controller
 		$responsible_user = Auth::user();
 		$type = UserController::userType($responsible_user->id);
 		switch ($type) {
+			case 'admin':
 			case 'school':
 			case 'responsible':
-				// $responsible = Responsible::find($responsible_user->id);
-				// garantir que somente possa editar o aluno do responsável atual
 				$student = Student::find($id);
 				if ($student) {
 					$user = UserController::edit($student->user_id, $request);
@@ -229,9 +228,9 @@ class StudentController extends Controller
 		$responsible_user = Auth::user();
 		$type = UserController::userType($responsible_user->id);
 		switch ($type) {
+			case 'admin':
+			case 'school':
 			case 'responsible':
-				$responsible = Responsible::find($responsible_user->id);
-				// garantir que somente possa editar o aluno do responsável atual
 				$student = Student::find($id);
 				if ($student) {
 					try {
@@ -258,10 +257,9 @@ class StudentController extends Controller
 		$responsible_user = Auth::user();
 		$type = UserController::userType($responsible_user->id);
 		switch ($type) {
+			case 'admin':
 			case 'school':
 			case 'responsible':
-				// $responsible = Responsible::find($responsible_user->id);
-				// garantir que somente possa editar o aluno do responsável atual
 				$student = Student::find($id);
 				if ($student) {
 					try {

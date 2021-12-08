@@ -74,58 +74,30 @@
 				</div>
 			</div>
 		</section>
-		{{-- <section id="advantageCS" class="advantageCS">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-6 order-1 order-lg-2">
-						<div class="advantageCS-img">
-							<img src="{{ asset('assets/manager.jpg') }}" alt="">
-						</div>
-					</div>
-					<div class="col-lg-5 pt-5 pt-lg-0 order-2 order-lg-1 content section-title">
-						<h1>Vantagens do CantiSystem</h1>
-						<br>
-						<h4>Gerenciamento da alimentação</h4>
-						<p class="fst-italic">
-							O responsável possui uma visão do que o aluno está consumindo por dia, além de poder controlar os hábitos
-							alimentares, bloqueando o consumo de produtos (p.e. refrigerante).
-						</p>
-						<br>
-						<h4>Gerenciamento de gastos dos seus filhos</h4>
-						<p class="fst-italic">
-							Tenha controle diário do consumo do aluno. É possível realizar depósitos a qualquer momento e consultar o seu
-							saldo.
-						</p>
-					</div>
+		<section id="target"
+			class="h-screen bg-manager-canteen bg-cover bg-gray-500 bg-blend-multiply
+		flex flex-col justify-center items-start
+		px-40
+		overflow-hidden">
+			<h1 class="text-base md:text-4xl font-semibold text-yellow-500">
+				Objetivo do CantiSystem
+			</h1>
+			<div class="flex flex-col">
+				<div class="text-white">
+					<h2 class="text-base md:text-2xl text-white">
+						Gerenciar Estoque</h2>
+					<p class="text-base md:text-lg italic">
+						Tenha controle do estoque da cantina da sua escola e deixe em dia todos os seus produtos.</p>
+				</div>
+				<div class="text-white">
+					<h2 class="text-base md:text-2xl">
+						Controle de Gastos</h2>
+					<p class="text-base md:text-lg italic">
+						Ajudar os responsáveis a realizar o controle de gastos dos seus filhos.</p>
 				</div>
 			</div>
 		</section>
-		
-		<section id="goalCS" class="goalCS">
-			<div class="container">
-				<div class="section-title">
-					<h1>Objetivo do CantiSystem</h1>
-				</div>
-				<div class="row p-5">
-					
-					<div class="col">
-						<div class="box">
-							<span>01</span>
-							<h4>Gerenciar Estoque</h4>
-							<p>Tenha controle do estoque da cantina da sua escola e deixe em dia todos os seus produtos</p>
-						</div>
-					</div>
-					<div class="col">
-						<div class="box">
-							<span>02</span>
-							<h4>Controle de Gastos</h4>
-							<p>Ajudar os responsáveis a realizar o controle de gastos dos seus filhos</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
+		{{-- 
 		<footer id="footer">
 			<div class="container">
 				<div class="copyright">

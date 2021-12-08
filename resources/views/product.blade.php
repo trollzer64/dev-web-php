@@ -27,14 +27,23 @@
 					<div class="flex flex-col items-center">
 						<form action="{{ route('deleteProduct', $product->id) }}" method="post">
 							@csrf
-							<button class="btn-red" type="submit">
+							<button class="btn-red" type="submit" {!! session()->get('type') === 'student' ? 'disabled' : '' !!}>
 								Deletar
 							</button>
 						</form>
 						<a href="{{ Request::url() . '?edit=' . $product->id . '#form' }}"
-							class="btn-blue">
+							class="btn-blue
+							{!! session()->get('type') === 'student' ? 'disabled' : '' !!}">
 							Editar
 						</a>
+						@if (session()->get('type') === 'student')
+							<form action="{{ route('buyProduct', $product->id) }}" method="post">
+								@csrf
+								<button class="btn-red" type="submit">
+									Comprar
+								</button>
+							</form>
+						@endif
 					</div>
 					<div class="item-container">
 						<img class="fit-picture" src="{{ $product->photo }}" alt="product">
@@ -60,26 +69,23 @@
 		</section>
 
 		<section id="form" class="flex flex-col items-center">
-			@includeWhen(!Request::get('edit') and session()->get('type') !== 'school' and session()->get('type') !== 'student',
+			@includeWhen(!Request::get('edit') and in_array(session()->get('type'), ['school', 'admin'], true),
 			'layouts.forms.product', [
 			'edit'=> false,
-			'balance'=>"0,00",
+			'price'=>"0,00",
 			])
 			@if (Request::get('edit') == ($product ? $product->id : -1))
 				@includeWhen(Request::get('edit') == ($product ? $product->id : -1),
-				'layouts.forms.student',
+				'layouts.forms.product',
 				[
-				'edit'=> $product->student_id,
-				'school_id'=> $product->school_id,
+				'edit'=> $product->id,
+				'code'=> $product->code,
 				'name'=> $product->name,
-				'registration'=> $product->registration,
-				'class'=> $product->class,
-				'shift'=> $product->shift,
-				'balance'=> $product->balance,
-				'phone'=> $product->phone,
-				'email'=> $product->email,
-				'login'=> $product->login,
-				'password'=> $product->password,
+				'photo'=> $product->photo,
+				'price'=> $product->price,
+				'type'=> $product->type,
+				'ingredients'=> $product->ingredients,
+				'provider'=> $product->provider,
 				])
 			@endif
 		</section>

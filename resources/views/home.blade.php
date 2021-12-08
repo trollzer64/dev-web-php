@@ -19,8 +19,8 @@
 
 @section('content')
 	<div class="">
-		<h1 class="text-base md:text-4xl font-semibold">Área do Usuário</h1>
 		<section>
+			<h1 class="text-base md:text-4xl font-semibold">Área do Usuário</h1>
 			<p>Bem vindo {{ $user->name }}</p>
 		</section>
 	</div>
