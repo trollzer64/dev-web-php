@@ -1,6 +1,6 @@
 <h2 class="text-base md:text-4xl font-semibold">{{ $edit ? 'Editar' : 'Cadastro de' }} produto</h2>
 <form class="form-main" action="{{ $edit ? route('editProduct', $edit) : route('saveProduct') }}" method="post"
-	accept-charset="UTF-8">
+	accept-charset="UTF-8" enctype="multipart/form-data">
 	@csrf
 
 	<div class="form-item">
@@ -13,8 +13,12 @@
 	</div>
 	<div class="form-item">
 		<label for="photo">Foto</label>
-		<input type="text" name="photo" autocomplete="off" value="{{ old('photo') ?? ($photo ?? '') }}">
+		<input type="file" name="photo" value="{{ old('photo') ?? ($photo ?? '') }}">
 	</div>
+	{{-- <div class="form-item hidden">
+		<label for="photo">Foto</label>
+		<input type="text" name="photo" autocomplete="off" value="{{ old('photo') ?? ($photo ?? '') }}">
+	</div> --}}
 	<div class="form-item">
 		<label for="price">Preço</label>
 		<input type="number" name="price" autocomplete="off" value="{{ old('price') ?? ($price ?? '') }}" step="0.50">
@@ -35,6 +39,9 @@
 		<label for="provider">Fornecedor</label>
 		<input type="text" name="provider" autocomplete="off" value="{{ old('provider') ?? ($provider ?? '') }}">
 	</div>
+	
+	
+
 
 	@if (session('errors'))
 		<span class="flex-grow-0 text-red-500">{{ session('errors')->first() }}</span>

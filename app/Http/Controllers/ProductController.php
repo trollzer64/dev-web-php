@@ -43,17 +43,19 @@ class ProductController extends Controller
 					$validatedData = $request->validate([
 						'code' => ['required', 'string', 'unique:products,code'],
 						'name' => ['required', 'string'],
-						'photo' => ['required', 'url'],
+						'photo' => ['required', 'file'],
 						'price' => ['required', 'numeric'],
 						'type' => ['required', 'string', 'in:food,drink'],
 						'ingredients' => ['nullable', 'string'],
 						'provider' => ['nullable', 'string'],
 					]);
 
+					$path = $request->file('photo')->store('photos');
+
 					$newProduct = new Product;
 					$newProduct->code = $validatedData['code'];
 					$newProduct->name = $validatedData['name'];
-					$newProduct->photo = $validatedData['photo'];
+					$newProduct->photo = 'storage/' . $path;
 					$newProduct->price = $validatedData['price'];
 					$newProduct->type = $validatedData['type'];
 					$newProduct->ingredients = $validatedData['ingredients'];
@@ -88,16 +90,18 @@ class ProductController extends Controller
 						$validatedData = $request->validate([
 							'code' => ['required', 'string', Rule::unique('products')->ignore($id)],
 							'name' => ['required', 'string'],
-							'photo' => ['required', 'url'],
+							'photo' => ['required', 'file'],
 							'price' => ['required', 'numeric'],
 							'type' => ['required', 'string', 'in:food,drink'],
 							'ingredients' => ['nullable', 'string'],
 							'provider' => ['nullable', 'string'],
 						]);
 
+						$path = $request->file('photo')->store('photos');
+
 						$product->code = $validatedData['code'];
 						$product->name = $validatedData['name'];
-						$product->photo = $validatedData['photo'];
+						$product->photo = 'storage/' . $path;
 						$product->price = $validatedData['price'];
 						$product->type = $validatedData['type'];
 						$product->ingredients = $validatedData['ingredients'];
@@ -134,7 +138,7 @@ class ProductController extends Controller
 						DB::beginTransaction();
 
 						Product::destroy($id);
-						
+
 						DB::commit();
 					} catch (Exception $e) {
 						DB::rollBack();
@@ -152,26 +156,27 @@ class ProductController extends Controller
 				]);
 		}
 	}
-	public function buy($id, Request $request){
+	public function buy($id, Request $request)
+	{
 		$student_user = Auth::user();
 		$type = UserController::userType($student_user->id);
 		switch ($type) {
 			case 'student':
 				$product = Product::find($id);
 				$student_id = DB::table('students')
-						->where('students.user_id', '=', intval($student_user->id))
-						->first()->id;
+					->where('students.user_id', '=', intval($student_user->id))
+					->first()->id;
 				$student = Student::find($student_id);
 				if ($product && $student) {
 					try {
 						DB::beginTransaction();
 
-						if($student->balance < $product->price){
+						if ($student->balance < $product->price) {
 							return back()->withErrors(['acess' => 'Saldo insuficiente']);
 						}
 						$student->balance -= $product->price;
 						$student->save();
-						
+
 						DB::commit();
 					} catch (Exception $e) {
 						DB::rollBack();
